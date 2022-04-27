@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/fa-gen",
-	"description": "",
+	"description": "Easily generate tree-shaken Font Awesome library loader files for Vue.js",
 	"version": "1.1.34",
 	"license": "MIT",
 	"keywords": [
@@ -39,6 +39,7 @@
 		"watch": "concurrently -n lib,cli \"yarpm run watch:lib\" \"yarpm run watch:cli\"",
 		"watch:lib": "yarpm run build:lib --watch",
 		"watch:cli": "yarpm run build:cli --watch",
+		"depcheck": "depcheck",
 		"prod": "yarpm run clean && concurrently -n lib,cli \"yarpm run build:lib --minify\" \"yarpm run build:cli --minify\""
 	},
 	"dependencies": {
