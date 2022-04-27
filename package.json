@@ -1,0 +1,80 @@
+{
+	"name": "@snickbit/fa-gen",
+	"description": "",
+	"version": "1.1.33",
+	"license": "MIT",
+	"keywords": [
+		"font-awesome",
+		"fontawesome",
+		"generator",
+		"cli",
+		"vue"
+	],
+	"bin": {
+		"fa": "./bin/fa.js"
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"bin"
+	],
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"scripts": {
+		"start": "node bin/fa.js",
+		"clean": "shx rm -rf bin dist",
+		"index": "indexer src/actions",
+		"build": "yarpm run clean && yarpm run build:lib && yarpm run build:cli",
+		"build:lib": "tsup",
+		"build:cli": "esbuild src/cli.js --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/*",
+		"build:meta": "yarpm run build:cli --minify --metafile=.meta.json",
+		"watch": "concurrently -n lib,cli \"yarpm run watch:lib\" \"yarpm run watch:cli\"",
+		"watch:lib": "yarpm run build:lib --watch",
+		"watch:cli": "yarpm run build:cli --watch",
+		"prod": "yarpm run clean && concurrently -n lib,cli \"yarpm run build:lib --minify\" \"yarpm run build:cli --minify\""
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^6.1.1",
+		"@snickbit/node-cli": "^1.0.26",
+		"@snickbit/node-utilities": "^4.2.21",
+		"@snickbit/out": "^2.0.7",
+		"@snickbit/utilities": "^3.0.7",
+		"@urql/core": "^2.4.4",
+		"graphql": "^16.3.0",
+		"isomorphic-unfetch": "^3.1.0",
+		"lodash": "^4.17.21",
+		"mkdirp": "^1.0.4"
+	},
+	"optionalDependencies": {
+		"quasar": "^2.6.0",
+		"vue": "^2.6.10"
+	},
+	"devDependencies": {
+		"@remedyred/indexer": "^2.0.70",
+		"concurrently": "^7.1.0",
+		"tsup": "^5.12.6",
+		"typescript": "^4.6.3"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	},
+	"tsup": {
+		"entry": [
+			"src/index.js"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
+		]
+	}
+}
