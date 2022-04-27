@@ -1,7 +1,7 @@
 {
 	"name": "@snickbit/fa-gen",
 	"description": "Easily generate tree-shaken Font Awesome library loader files for Vue.js",
-	"version": "1.1.34",
+	"version": "1.1.35",
 	"license": "MIT",
 	"keywords": [
 		"font-awesome",
