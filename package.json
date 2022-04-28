@@ -32,15 +32,15 @@
 		"start": "node bin/fa.js",
 		"clean": "shx rm -rf bin dist",
 		"index": "indexer src/actions",
-		"build": "yarpm run clean && yarpm run build:lib && yarpm run build:cli",
+		"build": "npm run clean && npm run build:lib && npm run build:cli",
 		"build:lib": "tsup",
 		"build:cli": "esbuild src/cli.js --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/*",
-		"build:meta": "yarpm run build:cli --minify --metafile=.meta.json",
-		"watch": "concurrently -n lib,cli \"yarpm run watch:lib\" \"yarpm run watch:cli\"",
-		"watch:lib": "yarpm run build:lib --watch",
-		"watch:cli": "yarpm run build:cli --watch",
+		"build:meta": "npm run build:cli --minify --metafile=.meta.json",
+		"watch": "concurrently -n lib,cli \"npm run watch:lib\" \"npm run watch:cli\"",
+		"watch:lib": "npm run build:lib --watch",
+		"watch:cli": "npm run build:cli --watch",
 		"depcheck": "depcheck",
-		"prod": "yarpm run clean && concurrently -n lib,cli \"yarpm run build:lib --minify\" \"yarpm run build:cli --minify\""
+		"prod": "npm run clean && concurrently -n lib,cli \"npm run build:lib --minify\" \"npm run build:cli --minify\""
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.1.1",
