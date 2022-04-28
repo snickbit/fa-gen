@@ -155,7 +155,7 @@ export function getStringContent(content, config) {
 		contentString = `
 // required
 import {boot} from 'quasar/wrappers'
-import {useFa} from '@remedyred/fa'
+import {useFa} from '@snickbit/fa-gen'
 import {library} from "@fortawesome/fontawesome-svg-core"
 
 ${content.join('\n')}
