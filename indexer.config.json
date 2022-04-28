@@ -3,7 +3,7 @@
 		"index": "src/actions/index.js",
 		"files": [
 			{
-				"export": "individual",
+				"export": "group",
 				"dir": "src/actions"
 			}
 		]
