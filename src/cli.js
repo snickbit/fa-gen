@@ -6,7 +6,7 @@ import packageJson from '../package.json'
 import * as actions from './actions'
 
 cli()
-	.name('FontAwesome CLI')
+	.name(packageJson.name)
 	.version(packageJson.version)
 	.actions(actions)
 	.defaultAction('generate')
