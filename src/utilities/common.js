@@ -21,7 +21,6 @@ export function getNodeModulesPath() {
 export const config_path = path.join(process.cwd(), 'fa.config.json')
 
 export async function useConfig() {
-	out.info('Using config file:', config_path)
 	if (!config) {
 		if (!fileExists(config_path)) {
 			// create with inquirer
