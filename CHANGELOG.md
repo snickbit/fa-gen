@@ -1,5 +1,12 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.38
+
+### Patch Changes
+
+- [0bb1a41](https://github.com/snickbit/fa-gen/commit/0bb1a41) **chore**:  update build config
+
+
 ## 1.1.37
 
 ### Patch Changes
