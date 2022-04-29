@@ -36,11 +36,11 @@
 		"build:lib": "tsup",
 		"build:cli": "esbuild src/cli.js --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/*",
 		"build:meta": "npm run build:cli --minify --metafile=.meta.json",
-		"watch": "concurrently -n lib,cli \"tsup --watch\" \"npm run watch:cli\"",
-		"watch:lib": "tsup --watch",
-		"watch:cli": "npm run build:cli -- --watch",
+		"watch": "concurrently -n lib,cli \"npm run watch:lib\" \"npm run watch:cli\"",
+		"watch:lib": "npm run build:lib --watch",
+		"watch:cli": "npm run build:cli --watch",
 		"depcheck": "depcheck",
-		"prod": "npm run clean && concurrently -n lib,cli \"tsup --minify\" \"npm run build:cli --minify\""
+		"prod": "npm run clean && concurrently -n lib,cli \"npm run build:lib --minify\" \"npm run build:cli --minify\""
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.1.1",
