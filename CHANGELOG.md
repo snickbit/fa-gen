@@ -1,5 +1,13 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.39
+
+### Patch Changes
+
+- [7fa1987](https://github.com/snickbit/fa-gen/commit/7fa1987) **chore**:  add .gitignore
+- [f94c6fd](https://github.com/snickbit/fa-gen/commit/f94c6fd) **chore**:  update dependencies
+
+
 ## 1.1.38
 
 ### Patch Changes
