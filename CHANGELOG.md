@@ -1,5 +1,13 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.40
+
+### Patch Changes
+
+- [8acce90](https://github.com/snickbit/fa-gen/commit/8acce90) Revert "chore(release): publish"
+- [822d6a2](https://github.com/snickbit/fa-gen/commit/822d6a2) **chore**(release):  publish
+
+
 ## 1.1.39
 
 ### Patch Changes
