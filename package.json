@@ -47,7 +47,7 @@
 		"@snickbit/node-cli": "^1.0.38",
 		"@snickbit/node-utilities": "^4.2.30",
 		"@snickbit/out": "^2.0.17",
-		"@snickbit/utilities": "^3.0.7",
+		"@snickbit/utilities": "^3.0.14",
 		"@urql/core": "^2.4.4",
 		"graphql": "^16.3.0",
 		"isomorphic-unfetch": "^3.1.0",
@@ -56,10 +56,10 @@
 	},
 	"optionalDependencies": {
 		"quasar": "^2.6.0",
-		"vue": "^2.6.10"
+		"vue": "^3.2.33"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.0.70",
+		"@remedyred/indexer": "^2.0.77",
 		"concurrently": "^7.1.0",
 		"tsup": "^5.12.6",
 		"typescript": "^4.6.3"
