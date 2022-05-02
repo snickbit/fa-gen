@@ -1,15 +1,15 @@
 import {saveFile} from '@snickbit/node-utilities'
 import mkdirp from 'mkdirp'
 import path from 'path'
-import {_out, getImportString, getStringContent, parseIcon, saveConfig, useConfig} from '../utilities/common'
+import {_out, getImportString, getStringContent, initConfig, parseIcon, saveConfig} from '../utilities/common'
 
 export default async function () {
-	let config = await useConfig()
+	let config = await initConfig()
 	let content = []
 	let icons = []
 	let aliases = {}
 
-	function processIcon(raw_icon_name) {
+	async function processIcon(raw_icon_name) {
 		// get the icon object
 		let icon = parseIcon(raw_icon_name)
 
@@ -32,7 +32,7 @@ export default async function () {
 	}
 
 	for (let raw_icon_name of config.icons) {
-		processIcon(raw_icon_name)
+		await processIcon(raw_icon_name)
 	}
 
 	for (let [alias, resolved_icon] of Object.entries(config.aliases)) {
@@ -43,7 +43,7 @@ export default async function () {
 		if (matching_icons.length === 1) {
 			icon = matching_icons.pop()
 		} else {
-			icon = processIcon(resolved_icon)
+			icon = await processIcon(resolved_icon)
 		}
 		if (icon) {
 			aliases[alias] = icon.id

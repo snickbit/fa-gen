@@ -20,7 +20,7 @@ export function getNodeModulesPath() {
 
 export const config_path = path.join(process.cwd(), 'fa.config.json')
 
-export async function useConfig() {
+export async function initConfig() {
 	if (!config) {
 		if (!fileExists(config_path)) {
 			// create with inquirer
@@ -94,16 +94,22 @@ export async function useConfig() {
 	return config
 }
 
+export function useConfig() {
+	if (!config) {
+		out.throw('No config found!')
+	}
+
+	icon_prefix_types.fa = icon_prefix_types[config.default]
+
+	return config
+}
+
 export function saveConfig(conf) {
 	config = conf
 	return saveFileJson(config_path, config)
 }
 
-/**
- * @param {string} icon_name
- * @returns {string}
- */
-export function normalizeIconName(icon_name) {
+export function normalizeIconName(icon_name: string): string {
 	icon_name = icon_name.replace(/(fa[a-z]?)[-:]/, `$1:`)
 	if (!icon_name.includes(':')) {
 		icon_name = 'fa:' + icon_name

@@ -1,25 +1,24 @@
-import {icon, library} from '@fortawesome/fontawesome-svg-core'
+import {icon, IconLookup, library} from '@fortawesome/fontawesome-svg-core'
 import out from '@snickbit/out'
 import {default_icon_map} from './utilities/data'
+import {IconDefinition, IconName, IconPrefix as IconPrefixBase} from '@fortawesome/fontawesome-common-types'
 
-/**
- * @typedef {import('@fortawesome/fontawesome-common-types').IconName} IconName
- * @typedef {import('@fortawesome/fontawesome-common-types').IconPrefix} IconPrefix
- * @typedef {import('@fortawesome/fontawesome-common-types').IconLookup} IconLookup
- * @typedef {import('@fortawesome/fontawesome-common-types').IconDefinition} IconDefinition
- * @typedef {import('@fortawesome/fontawesome-common-types').IconPack} IconPack
- */
+export type IconPrefix = IconPrefixBase | 'fa'
 
-/**
- * @param app
- * @param icon_aliases
- * @return {Promise<void>}
- */
-export async function useFa(app, icon_aliases) {
+export interface Library {
+	definitions?: {
+		[key: string]: IconDefinition
+	}
+}
+
+export type IconSplit = [IconPrefix, IconName]
+
+export type IconString = `${IconPrefix}:${IconName}`
+
+export async function useFa(app, icon_aliases): Promise<void> {
 	out.verbose('Loading Font Awesome icons...')
 
-	// noinspection JSUnresolvedVariable
-	const definitions = library?.definitions || {}
+	const definitions = (library as unknown as Library)?.definitions || {}
 
 	let iconDefaultPrefixes = {}
 	for (let [prefixName, prefixGroup] of Object.entries(definitions)) {
@@ -29,7 +28,6 @@ export async function useFa(app, icon_aliases) {
 	}
 
 	function parseIcon(iconData) {
-		// noinspection JSUnusedLocalSymbols
 		let [width, height, ligatures, , svgPathData] = iconData.icon
 		if (ligatures.length < 2 || iconData.prefix !== 'fad') {
 			ligatures = [0, 0]
@@ -49,20 +47,13 @@ export async function useFa(app, icon_aliases) {
 		return svgPathData + '|' + ligatures.join(' ') + ' ' + width + ' ' + height
 	}
 
-	/**
-	 * @param {string} icon_name
-	 * @return {[IconPrefix, IconName]}
-	 */
-	function splitIconName(icon_name) {
-		let prefix = 'fa'
+	function splitIconName(icon_name: string): IconSplit {
+		let prefix: IconPrefix = 'fa'
 		if (icon_name.includes(':')) {
 			[prefix, icon_name] = icon_name.split(':')
 		}
 
-		/**
-		 * @type {`${IconPrefix}:${IconName}`}
-		 */
-		let prefixed_icon_name = `${prefix}:${icon_name}`
+		let prefixed_icon_name: IconString = `${prefix}:${icon_name}`
 
 		if (icon_name in icon_aliases) {
 			prefixed_icon_name = icon_aliases[icon_name]
@@ -70,17 +61,15 @@ export async function useFa(app, icon_aliases) {
 			prefixed_icon_name = icon_aliases[prefixed_icon_name]
 		}
 
-		return prefixed_icon_name.includes(':') ? prefixed_icon_name.split(':') : [
-			prefix,
-			prefixed_icon_name
-		]
+		if (prefixed_icon_name.includes(':')) {
+			[prefix, icon_name] = prefixed_icon_name.split(':')
+			return [prefix, icon_name] as IconSplit
+		} else {
+			return [prefix, prefixed_icon_name] as IconSplit
+		}
 	}
 
-	/**
-	 * @param {string} raw_icon_name
-	 * @return {IconLookup}
-	 */
-	function parseIconName(raw_icon_name) {
+	function parseIconName(raw_icon_name: string): IconLookup {
 		let [prefix, iconName] = splitIconName(raw_icon_name)
 
 		if (prefix === 'fa' && iconName in iconDefaultPrefixes && iconDefaultPrefixes[iconName].length === 1) {
@@ -88,8 +77,8 @@ export async function useFa(app, icon_aliases) {
 		}
 
 		return {
-			/** @type {IconName} */ iconName,
-			/** @type {import('@fortawesome/fontawesome-common-types').IconPrefix} */ prefix
+			iconName,
+			prefix
 		}
 	}
 

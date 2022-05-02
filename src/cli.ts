@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import cli from '@snickbit/node-cli'
+import {cli} from '@snickbit/node-cli'
 import {out} from '@snickbit/out'
 import packageJson from '../package.json'
 import * as actions from './actions'

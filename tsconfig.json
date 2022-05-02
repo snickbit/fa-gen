@@ -1,15 +1,12 @@
 {
 	"include": [
-		"src/index.js"
+		"src/**/*.ts"
 	],
 	"compilerOptions": {
-		"allowJs": true,
-		"outFile": "./dist/index.d.ts",
-		"emitDeclarationOnly": true,
 		"declaration": true,
 		"declarationMap": true,
 		"removeComments": true,
-		"target": "es2015",
+		"target": "es2020",
 		"moduleResolution": "node",
 		"newLine": "lf",
 		"module": "commonjs",
@@ -17,6 +14,7 @@
 		"sourceMap": true,
 		"noImplicitAny": false,
 		"noImplicitThis": false,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"resolveJsonModule": true
 	}
 }
