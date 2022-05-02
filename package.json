@@ -43,6 +43,7 @@
 		"prod": "npm run clean && concurrently -n lib,cli \"npm run build:lib --minify\" \"npm run build:cli --minify\""
 	},
 	"dependencies": {
+		"@fortawesome/fontawesome-common-types": "^6.1.1",
 		"@fortawesome/fontawesome-svg-core": "^6.1.1",
 		"@snickbit/node-cli": "^1.0.39",
 		"@snickbit/node-utilities": "^4.2.31",
