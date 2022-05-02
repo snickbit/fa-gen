@@ -1,4 +1,4 @@
-import {ask, fileExists, getFileJson, saveFileJson} from '@snickbit/node-utilities'
+import {ask, confirm, fileExists, getFileJson, saveFileJson} from '@snickbit/node-utilities'
 import out, {Out} from '@snickbit/out'
 import {createClient} from '@urql/core'
 import 'isomorphic-unfetch'
@@ -26,50 +26,53 @@ export async function initConfig() {
 			// create with inquirer
 			_out.block.info('fa-cli config')
 
-			config = {
-				version: await ask('Which FontAwesome version?', {
-					type: 'select',
-					choices: [
-						{
-							title: 'FontAwesome Pro 5',
-							value: 'svg-fontawesome-v5-pro'
-						},
-						{
-							title: 'FontAwesome Pro 6',
-							value: 'svg-fontawesome-v6-pro'
-						}
-					]
-				}),
-				default: await ask('Default Style?', {
-					type: 'select',
-					choices: [
-						{
-							title: 'Regular',
-							value: 'far'
-						},
-						{
-							title: 'Solid',
-							value: 'fas'
-						},
-						{
-							title: 'Light',
-							value: 'fal'
-						},
-						{
-							title: 'Duotone',
-							value: 'fad'
-						}
-					]
-				})
-			}
+			config.version = await ask('Which FontAwesome version?', {
+				type: 'select',
+				choices: [
+					{
+						title: 'FontAwesome Pro 5',
+						value: 'svg-fontawesome-v5-pro'
+					},
+					{
+						title: 'FontAwesome Pro 6',
+						value: 'svg-fontawesome-v6-pro'
+					}
+				]
+			})
 
 			if (!config.version) {
 				out.fatal('No FontAwesome version selected')
 			}
+
+			config.default = await ask('Default Style?', {
+				type: 'select',
+				choices: [
+					{
+						title: 'Regular',
+						value: 'far'
+					},
+					{
+						title: 'Solid',
+						value: 'fas'
+					},
+					{
+						title: 'Light',
+						value: 'fal'
+					},
+					{
+						title: 'Duotone',
+						value: 'fad'
+					}
+				]
+			})
+
 			if (!config.default) {
 				out.fatal('No default style selected')
 			}
 
+			if (fileExists('tsconfig.json') && await confirm('Use TypeScript?')) {
+				config.typescript = true
+			}
 
 			config.icons = default_icons.slice()
 			config.aliases = {...default_icon_aliases}
