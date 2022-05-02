@@ -1,5 +1,18 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.41
+
+### Patch Changes
+
+- [33667ba](https://github.com/snickbit/fa-gen/commit/33667ba) **docs**:  update
+- [ebbacb9](https://github.com/snickbit/fa-gen/commit/ebbacb9) **chore**:  update dependencies
+- [e84aaf2](https://github.com/snickbit/fa-gen/commit/e84aaf2) **fix**:  remove typedoc.json
+- [39e70db](https://github.com/snickbit/fa-gen/commit/39e70db) **fix**:  corrected types
+- [aea9089](https://github.com/snickbit/fa-gen/commit/aea9089) **fix**:  adjust type definition
+- [514079f](https://github.com/snickbit/fa-gen/commit/514079f) **feat**:  add support for TypeScript generation
+- [4a000cd](https://github.com/snickbit/fa-gen/commit/4a000cd) **refactor**:  typescript rewrite
+
+
 ## 1.1.40
 
 ### Patch Changes
