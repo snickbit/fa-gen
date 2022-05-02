@@ -48,7 +48,7 @@
 		"@snickbit/node-cli": "^1.0.40",
 		"@snickbit/node-utilities": "^4.2.32",
 		"@snickbit/out": "^2.0.20",
-		"@snickbit/utilities": "^3.0.14",
+		"@snickbit/utilities": "^3.0.16",
 		"@urql/core": "^2.4.4",
 		"graphql": "^16.3.0",
 		"isomorphic-unfetch": "^3.1.0",
