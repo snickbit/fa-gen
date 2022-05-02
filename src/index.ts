@@ -1,9 +1,9 @@
 import {icon, IconLookup, library} from '@fortawesome/fontawesome-svg-core'
 import out from '@snickbit/out'
 import {default_icon_map} from './utilities/data'
-import {IconDefinition, IconName, IconPrefix as IconPrefixBase} from '@fortawesome/fontawesome-common-types'
+import {IconDefinition, IconName, IconPrefix} from '@fortawesome/fontawesome-common-types'
 
-export type IconPrefix = IconPrefixBase | 'fa'
+export type faIconPrefix = IconPrefix | 'fa'
 
 export interface Library {
 	definitions?: {
@@ -11,9 +11,9 @@ export interface Library {
 	}
 }
 
-export type IconSplit = [IconPrefix, IconName]
+export type IconSplit = [faIconPrefix, IconName]
 
-export type IconString = `${IconPrefix}:${IconName}`
+export type IconString = `${faIconPrefix}:${IconName}`
 
 export async function useFa(app, icon_aliases): Promise<void> {
 	out.verbose('Loading Font Awesome icons...')
@@ -48,25 +48,25 @@ export async function useFa(app, icon_aliases): Promise<void> {
 	}
 
 	function splitIconName(icon_name: string): IconSplit {
-		let prefix: IconPrefix = 'fa'
+		let prefix: faIconPrefix = 'fa'
 		if (icon_name.includes(':')) {
-			[prefix, icon_name] = icon_name.split(':')
+			[prefix, icon_name] = icon_name.split(':') as IconSplit
 		}
 
-		let prefixed_icon_name: IconString = `${prefix}:${icon_name}`
-
+		let prefixed_icon_name = `${prefix}:${icon_name}`
 		if (icon_name in icon_aliases) {
 			prefixed_icon_name = icon_aliases[icon_name]
 		} else if (prefixed_icon_name in icon_aliases) {
 			prefixed_icon_name = icon_aliases[prefixed_icon_name]
 		}
 
+		let results: IconSplit
 		if (prefixed_icon_name.includes(':')) {
-			[prefix, icon_name] = prefixed_icon_name.split(':')
-			return [prefix, icon_name] as IconSplit
+			results = prefixed_icon_name.split(':') as IconSplit
 		} else {
-			return [prefix, prefixed_icon_name] as IconSplit
+			results = [prefix, prefixed_icon_name] as IconSplit
 		}
+		return results
 	}
 
 	function parseIconName(raw_icon_name: string): IconLookup {
@@ -75,6 +75,8 @@ export async function useFa(app, icon_aliases): Promise<void> {
 		if (prefix === 'fa' && iconName in iconDefaultPrefixes && iconDefaultPrefixes[iconName].length === 1) {
 			prefix = iconDefaultPrefixes[iconName].slice().pop()
 		}
+
+		prefix = prefix as IconPrefix
 
 		return {
 			iconName,
