@@ -79,5 +79,13 @@
 			"esm",
 			"cjs"
 		]
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/node-cli",
+			"@snickbit/node-utilities",
+			"@snickbit/out",
+			"@snickbit/utilities"
+		]
 	}
 }
