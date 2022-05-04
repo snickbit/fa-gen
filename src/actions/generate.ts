@@ -57,7 +57,7 @@ export default async function () {
 	}
 
 	if (content.length) {
-		const ext = config.typescript ? '.ts' : '.js'
+		const ext = config.typescript ? 'ts' : 'js'
 		const boot_path = config.output || config.isQuasar ? `src/boot/fontawesome.${ext}` : `src/fontawesome.${ext}`
 		let contentString = getStringContent(content, config)
 
