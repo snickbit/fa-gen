@@ -1,5 +1,15 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.42
+
+### Patch Changes
+
+- [82a62b6](https://github.com/snickbit/fa-gen/commit/82a62b6) **fix**:  add @types/node
+- [3a6b44a](https://github.com/snickbit/fa-gen/commit/3a6b44a) **fix**:  double dot in extension
+- [855bf9a](https://github.com/snickbit/fa-gen/commit/855bf9a) **build**:  migrate to nx
+- [a7a39b7](https://github.com/snickbit/fa-gen/commit/a7a39b7) **chore**:  update dependencies
+
+
 ## 1.1.41
 
 ### Patch Changes
