@@ -1,5 +1,12 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.43
+
+### Patch Changes
+
+- [0f16493](https://github.com/snickbit/fa-gen/commit/0f16493) **build**:  add dev watcher scripts with source maps
+
+
 ## 1.1.42
 
 ### Patch Changes
