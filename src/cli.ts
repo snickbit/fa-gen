@@ -6,10 +6,10 @@ import packageJson from '../package.json'
 import * as actions from './actions'
 
 cli()
-	.name(packageJson.name)
-	.version(packageJson.version)
-	.actions(actions)
-	.defaultAction('generate')
-	.run()
-	.then(() => out.done('Done!'))
-	.catch(err => out.fatal(err))
+.name(packageJson.name)
+.version(packageJson.version)
+.actions(actions)
+.defaultAction('generate')
+.run()
+.then(() => out.done('Done!'))
+.catch(err => out.fatal(err))
