@@ -1,5 +1,14 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.44
+
+### Patch Changes
+
+- [9b10898](https://github.com/snickbit/fa-gen/commit/9b10898) **chore**(dep):  update dependencies
+- [05fa78f](https://github.com/snickbit/fa-gen/commit/05fa78f) **style**:  reformat
+- [97c5db4](https://github.com/snickbit/fa-gen/commit/97c5db4) **chore**:  update dependencies
+
+
 ## 1.1.43
 
 ### Patch Changes
