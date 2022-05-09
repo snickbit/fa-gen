@@ -61,7 +61,7 @@
 		"vue": "^3.2.33"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.0.79",
+		"@remedyred/indexer": "^2.1.1",
 		"@types/node": "^17.0.31",
 		"concurrently": "^7.1.0",
 		"tsup": "^5.12.7",
