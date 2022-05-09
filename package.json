@@ -1,8 +1,7 @@
 {
 	"name": "@snickbit/fa-gen",
-	"description": "Easily generate tree-shaken Font Awesome library loader files for Vue.js",
 	"version": "1.1.44",
-	"license": "MIT",
+	"description": "Easily generate tree-shaken Font Awesome library loader files for Vue.js",
 	"keywords": [
 		"font-awesome",
 		"fontawesome",
@@ -10,38 +9,40 @@
 		"cli",
 		"vue"
 	],
-	"bin": {
-		"fa": "./bin/fa.js"
-	},
-	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
-	"files": [
-		"dist",
-		"bin"
-	],
+	"license": "MIT",
 	"exports": {
 		"require": "./dist/index.js",
 		"import": "./dist/index.mjs",
 		"types": "./dist/index.d.ts"
 	},
-	"engines": {
-		"node": ">= 12"
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"bin": {
+		"fa": "./bin/fa.js"
 	},
+	"files": [
+		"dist",
+		"bin"
+	],
 	"scripts": {
-		"start": "node bin/fa.js",
-		"clean": "shx rm -rf ./dist ./bin",
-		"index": "indexer src/actions",
-		"esbuild": "esbuild src/cli.ts --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/* --sourcemap",
 		"build": "npm run clean && npm run build:lib && npm run build:cli",
-		"build:lib": "tsup",
 		"build:cli": "npm run esbuild",
+		"build:lib": "tsup",
 		"build:meta": "npm run build:cli --minify --metafile=.meta.json",
-		"watch": "concurrently -n lib,cli \"npm run watch:lib\" \"npm run watch:cli\"",
-		"watch:lib": "npm run build:lib --watch",
-		"watch:cli": "npm run build:cli -- --watch",
+		"clean": "shx rm -rf ./dist ./bin",
 		"depcheck": "depcheck",
-		"prod": "npm run clean && concurrently -n lib,cli \"npm run build:lib --minify\" \"npm run build:cli --minify\""
+		"esbuild": "esbuild src/cli.ts --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/* --sourcemap",
+		"index": "indexer src/actions",
+		"prod": "npm run clean && concurrently -n lib,cli \"npm run build:lib --minify\" \"npm run build:cli --minify\"",
+		"start": "node bin/fa.js",
+		"watch": "concurrently -n lib,cli \"npm run watch:lib\" \"npm run watch:cli\"",
+		"watch:cli": "npm run build:cli -- --watch",
+		"watch:lib": "npm run build:lib --watch"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-common-types": "^6.1.1",
@@ -56,10 +57,6 @@
 		"lodash": "^4.17.21",
 		"mkdirp": "^1.0.4"
 	},
-	"optionalDependencies": {
-		"quasar": "^2.6.0",
-		"vue": "^3.2.33"
-	},
 	"devDependencies": {
 		"@remedyred/indexer": "^2.1.1",
 		"@types/node": "^17.0.31",
@@ -67,9 +64,20 @@
 		"tsup": "^5.12.7",
 		"typescript": "^4.6.3"
 	},
-	"jest": {
-		"preset": "ts-jest",
-		"testEnvironment": "node"
+	"optionalDependencies": {
+		"quasar": "^2.6.0",
+		"vue": "^3.2.33"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/node-cli",
+			"@snickbit/node-utilities",
+			"@snickbit/out",
+			"@snickbit/utilities"
+		]
 	},
 	"tsup": {
 		"entry": [
@@ -80,14 +88,6 @@
 		"format": [
 			"esm",
 			"cjs"
-		]
-	},
-	"nx": {
-		"implicitDependencies": [
-			"@snickbit/node-cli",
-			"@snickbit/node-utilities",
-			"@snickbit/out",
-			"@snickbit/utilities"
 		]
 	}
 }
