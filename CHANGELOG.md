@@ -1,5 +1,12 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.47
+
+### Patch Changes
+
+- [409fbee](https://github.com/snickbit/fa-gen/commit/409fbee) **chore**(release):  publish
+- [27cc2f4](https://github.com/snickbit/fa-gen/commit/27cc2f4) **build**:  switch to pnpm for running
+
 ## 1.1.46
 
 ### Patch Changes
