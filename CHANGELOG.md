@@ -1,5 +1,11 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.46
+
+### Patch Changes
+
+- [27cc2f4](https://github.com/snickbit/fa-gen/commit/27cc2f4) **build**:  switch to pnpm for running
+
 ## 1.1.45
 
 ### Patch Changes
