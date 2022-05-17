@@ -37,7 +37,7 @@
 		"prod": "npm run clean && concurrently -n lib,cli \"npm run build:lib --minify\" \"npm run build:cli --minify\"",
 		"start": "node bin/fa.js",
 		"watch": "concurrently -n lib,cli \"npm run watch:lib\" \"npm run watch:cli\"",
-		"watch:cli": "npm run build:cli -- --watch",
+		"watch:cli": "pnpm run build:cli --watch",
 		"watch:lib": "npm run build:lib --watch"
 	},
 	"jest": {
