@@ -1,5 +1,11 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.49
+
+### Patch Changes
+
+- [2fce409](https://github.com/snickbit/fa-gen/commit/2fce409) **fix**:  initialize config before defining
+
 ## 1.1.48
 
 ### Patch Changes
