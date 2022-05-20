@@ -6,7 +6,16 @@ import camelCase from 'lodash/camelCase'
 import path from 'path'
 import {default_icon_aliases, default_icons, icon_prefix_types} from './data'
 
-let config
+interface Config {
+	version: 'svg-fontawesome-v5-pro' | 'svg-fontawesome-v6-pro'
+	default: 'far' | 'fal' | 'fas' | 'fad',
+	typescript: boolean
+	isQuasar: boolean
+	icons: string[]
+	aliases: Record<string, string>
+}
+
+let config: Config
 
 export const _out = new Out('fa-cli')
 
@@ -25,6 +34,8 @@ export async function initConfig() {
 		if (!fileExists(config_path)) {
 			// create with inquirer
 			_out.block.info('fa-cli config')
+
+			config = {} as Config
 
 			config.version = await ask('Which FontAwesome version?', {
 				type: 'select',
