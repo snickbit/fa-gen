@@ -26,19 +26,19 @@
 		"bin"
 	],
 	"scripts": {
-		"build": "npm run clean && npm run build:lib && npm run build:cli",
-		"build:cli": "npm run esbuild",
+		"build": "pnpm run clean && pnpm run build:lib && pnpm run build:cli",
+		"build:cli": "pnpm run esbuild",
 		"build:lib": "tsup",
-		"build:meta": "npm run build:cli --minify --metafile=.meta.json",
+		"build:meta": "pnpm run build:cli --minify --metafile=.meta.json",
 		"clean": "shx rm -rf ./dist ./bin",
 		"depcheck": "depcheck",
 		"esbuild": "esbuild src/cli.ts --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/* --sourcemap",
 		"index": "indexer",
-		"prod": "npm run clean && concurrently -n lib,cli \"npm run build:lib --minify\" \"npm run build:cli --minify\"",
+		"prod": "pnpm run clean && concurrently -n lib,cli \"pnpm run build:lib --minify\" \"pnpm run build:cli --minify\"",
 		"start": "node bin/fa.js",
-		"watch": "concurrently -n lib,cli \"npm run watch:lib\" \"npm run watch:cli\"",
+		"watch": "concurrently -n lib,cli \"pnpm run watch:lib\" \"pnpm run watch:cli\"",
 		"watch:cli": "pnpm run build:cli --watch",
-		"watch:lib": "npm run build:lib --watch"
+		"watch:lib": "pnpm run build:lib --watch"
 	},
 	"jest": {
 		"preset": "ts-jest",
