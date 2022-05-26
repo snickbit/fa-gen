@@ -1,5 +1,16 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.52
+
+### Patch Changes
+
+- [aa3bcbb](https://github.com/snickbit/fa-gen/commit/aa3bcbb) **chore**(release):  publish
+- [edc2b3d](https://github.com/snickbit/fa-gen/commit/edc2b3d) **style**:  heavy code restyling
+- [5a3367a](https://github.com/snickbit/fa-gen/commit/5a3367a) **chore**:  bump dependencies
+- [1131d87](https://github.com/snickbit/fa-gen/commit/1131d87) **chore**:  bump indexer version, and rerun
+- [aa45612](https://github.com/snickbit/fa-gen/commit/aa45612) **chore**:  bump indexer version
+- [b962335](https://github.com/snickbit/fa-gen/commit/b962335) **build**:  switch to pnpm
+
 ## 1.1.51
 
 ### Patch Changes
