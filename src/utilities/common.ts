@@ -1,14 +1,14 @@
 import {ask, confirm, fileExists, getFileJson, saveFileJson} from '@snickbit/node-utilities'
-import out, {Out} from '@snickbit/out'
 import {createClient} from '@urql/core'
-import 'isomorphic-unfetch'
+import {default_icon_aliases, default_icons, icon_prefix_types} from './data'
+import out, {Out} from '@snickbit/out'
 import camelCase from 'lodash/camelCase'
 import path from 'path'
-import {default_icon_aliases, default_icons, icon_prefix_types} from './data'
+import 'isomorphic-unfetch'
 
 interface Config {
 	version: 'svg-fontawesome-v5-pro' | 'svg-fontawesome-v6-pro'
-	default: 'far' | 'fal' | 'fas' | 'fad',
+	default: 'fad' | 'fal' | 'far' | 'fas'
 	typescript: boolean
 	isQuasar: boolean
 	icons: string[]
@@ -19,9 +19,7 @@ let config: Config
 
 export const _out = new Out('fa-cli')
 
-export const client = createClient({
-	url: 'https://api.fontawesome.com'
-})
+export const client = createClient({url: 'https://api.fontawesome.com'})
 
 export function getNodeModulesPath() {
 	return path.join(process.cwd(), 'node_modules')
@@ -39,16 +37,13 @@ export async function initConfig() {
 
 			config.version = await ask('Which FontAwesome version?', {
 				type: 'select',
-				choices: [
-					{
-						title: 'FontAwesome Pro 5',
-						value: 'svg-fontawesome-v5-pro'
-					},
-					{
-						title: 'FontAwesome Pro 6',
-						value: 'svg-fontawesome-v6-pro'
-					}
-				]
+				choices: [{
+					title: 'FontAwesome Pro 5',
+					value: 'svg-fontawesome-v5-pro'
+				}, {
+					title: 'FontAwesome Pro 6',
+					value: 'svg-fontawesome-v6-pro'
+				}]
 			})
 
 			if (!config.version) {
@@ -97,7 +92,7 @@ export async function initConfig() {
 			try {
 				config = getFileJson(config_path)
 			} catch (e) {
-				_out.error('Error parsing config file: ' + e.message)
+				_out.error(`Error parsing config file: ${e.message}`)
 				process.exit(1)
 			}
 		}
@@ -126,7 +121,7 @@ export function saveConfig(conf) {
 export function normalizeIconName(icon_name: string): string {
 	icon_name = icon_name.replace(/(fa[a-z]?)[-:]/, `$1:`)
 	if (!icon_name.includes(':')) {
-		icon_name = 'fa:' + icon_name
+		icon_name = `fa:${icon_name}`
 	}
 	return icon_name
 }
@@ -141,9 +136,9 @@ export function parseIcon(raw_icon_name) {
 		prefix = config.default
 	}
 
-	let import_name = camelCase('fa-' + name)
-	let prefixed_name = camelCase(prefix + '-' + name)
-	let import_path = '@fortawesome/' + (icon_prefix_types[prefix] || icon_prefix_types['fa'])
+	let import_name = camelCase(`fa-${name}`)
+	let prefixed_name = camelCase(`${prefix}-${name}`)
+	let import_path = `@fortawesome/${icon_prefix_types[prefix] || icon_prefix_types['fa']}`
 
 	return {
 		id: normalizedIconName,
@@ -168,7 +163,7 @@ export function getStringContent(content, config) {
 	let contentString
 
 	let iconAliases = {...default_icon_aliases, ...config.aliases}
-	const aliases_string = 'const icon_aliases = ' + JSON.stringify(iconAliases, null, 2)
+	const aliases_string = `const icon_aliases = ${JSON.stringify(iconAliases, null, 2)}`
 
 	if (config.isQuasar) {
 		contentString = `

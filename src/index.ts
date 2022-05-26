@@ -1,14 +1,12 @@
-import {icon, IconLookup, library} from '@fortawesome/fontawesome-svg-core'
-import out from '@snickbit/out'
-import {default_icon_map} from './utilities/data'
 import {IconDefinition, IconName, IconPrefix} from '@fortawesome/fontawesome-common-types'
+import {icon, IconLookup, library} from '@fortawesome/fontawesome-svg-core'
+import {default_icon_map} from './utilities/data'
+import out from '@snickbit/out'
 
 export type faIconPrefix = IconPrefix | 'fa'
 
 export interface Library {
-	definitions?: {
-		[key: string]: IconDefinition
-	}
+	definitions?: Record<string, IconDefinition>
 }
 
 export type IconSplit = [faIconPrefix, IconName]
@@ -28,7 +26,11 @@ export async function useFa(app, icon_aliases): Promise<void> {
 	}
 
 	function parseIcon(iconData) {
-		let [width, height, ligatures, , svgPathData] = iconData.icon
+		let [
+			width,
+			height,
+			ligatures, , svgPathData
+		] = iconData.icon
 		if (ligatures.length < 2 || iconData.prefix !== 'fad') {
 			ligatures = [0, 0]
 		}
@@ -44,7 +46,7 @@ export async function useFa(app, icon_aliases): Promise<void> {
 			}
 			svgPathData = svgPathData.join('&&')
 		}
-		return svgPathData + '|' + ligatures.join(' ') + ' ' + width + ' ' + height
+		return `${svgPathData}|${ligatures.join(' ')} ${width} ${height}`
 	}
 
 	function splitIconName(icon_name: string): IconSplit {
@@ -86,7 +88,7 @@ export async function useFa(app, icon_aliases): Promise<void> {
 
 	app.config.globalProperties.$q.iconSet.set(default_icon_map)
 
-	app.config.globalProperties.$q.iconMapFn = (icon_name) => {
+	app.config.globalProperties.$q.iconMapFn = icon_name => {
 		let parsedIconName = parseIconName(icon_name)
 		let foundIcon = icon(parsedIconName)
 		if (foundIcon) {

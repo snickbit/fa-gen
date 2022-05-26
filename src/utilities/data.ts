@@ -1,9 +1,9 @@
 export const icon_types = {
-	'brands': 'free-brands-svg-icons',
-	'duotone': 'pro-duotone-svg-icons',
-	'light': 'pro-light-svg-icons',
-	'regular': 'pro-regular-svg-icons',
-	'solid': 'pro-solid-svg-icons'
+	brands: 'free-brands-svg-icons',
+	duotone: 'pro-duotone-svg-icons',
+	light: 'pro-light-svg-icons',
+	regular: 'pro-regular-svg-icons',
+	solid: 'pro-solid-svg-icons'
 }
 
 export const default_icon_map = {
@@ -30,9 +30,7 @@ export const default_icon_map = {
 		tune: 'fa:sliders',
 		palette: 'fa:swatchbook'
 	},
-	pullToRefresh: {
-		icon: 'fa:arrows-rotate'
-	},
+	pullToRefresh: {icon: 'fa:arrows-rotate'},
 	carousel: {
 		left: 'fa:chevron-left',
 		right: 'fa:chevron-right',
@@ -100,9 +98,7 @@ export const default_icon_map = {
 		next: 'fa:chevron-right',
 		last: 'fa:forward-step'
 	},
-	rating: {
-		icon: 'fa:star'
-	},
+	rating: {icon: 'fa:star'},
 	stepper: {
 		done: 'fa:circle-check',
 		active: 'fa:pencil',
@@ -122,9 +118,7 @@ export const default_icon_map = {
 		nextPage: 'fa:chevron-right',
 		lastPage: 'fa:forward-step'
 	},
-	tree: {
-		icon: 'fa:play'
-	},
+	tree: {icon: 'fa:play'},
 	uploader: {
 		done: 'fa:circle-check',
 		clear: 'fa:xmark',
@@ -207,27 +201,27 @@ export const default_icons = [
 ]
 
 export const default_icon_aliases = {
-	'notification': 'bell',
-	'dashboard': 'gauge',
-	'close': 'circle-xmark',
-	'delete': 'trash',
-	'add': 'plus',
-	'menu': 'bars',
+	notification: 'bell',
+	dashboard: 'gauge',
+	close: 'circle-xmark',
+	delete: 'trash',
+	add: 'plus',
+	menu: 'bars',
 	'app-menu': 'bars',
 	'item-menu': 'ellipsis-vertical',
-	'settings': 'gears',
-	'warning': 'triangle-exclamation',
-	'error': 'circle-exclamation',
-	'success': 'circle-check',
-	'fullscreen': 'maximize',
+	settings: 'gears',
+	warning: 'triangle-exclamation',
+	error: 'circle-exclamation',
+	success: 'circle-check',
+	fullscreen: 'maximize',
 	'fullscreen-exit': 'minimize'
 }
 
 export const icon_prefix_types = {
-	'fab': 'free-brands-svg-icons',
-	'fad': 'pro-duotone-svg-icons',
-	'fal': 'pro-light-svg-icons',
-	'far': 'pro-regular-svg-icons',
-	'fas': 'pro-solid-svg-icons',
-	'fa': 'pro-solid-svg-icons'
+	fab: 'free-brands-svg-icons',
+	fad: 'pro-duotone-svg-icons',
+	fal: 'pro-light-svg-icons',
+	far: 'pro-regular-svg-icons',
+	fas: 'pro-solid-svg-icons',
+	fa: 'pro-solid-svg-icons'
 }
