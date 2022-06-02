@@ -1,5 +1,11 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.55
+
+### Patch Changes
+
+- [cefdf72](https://github.com/snickbit/fa-gen/commit/cefdf72) **chore**:  update dependencies
+
 ## 1.1.54
 
 ### Patch Changes
