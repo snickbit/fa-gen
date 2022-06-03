@@ -1,5 +1,5 @@
 import {saveFile} from '@snickbit/node-utilities'
-import {_out, getImportString, getStringContent, initConfig, parseIcon, saveConfig} from '../utilities/common'
+import {$out, getImportString, getStringContent, initConfig, parseIcon, saveConfig} from '../utilities/common'
 import mkdirp from 'mkdirp'
 import path from 'path'
 
@@ -74,11 +74,11 @@ export default async function() {
 		}
 	}
 
-	_out.broken.success('FontAwesome Icons Generated!', `\t${icons.length} icons`, `\t${alias_count} aliases`)
+	$out.broken.success('FontAwesome Icons Generated!', `\t${icons.length} icons`, `\t${alias_count} aliases`)
 
 	if (config.isQuasar) {
-		_out.info('Don\'t forget to add \'fontawesome\' to your Quasar boot config!')
+		$out.info('Don\'t forget to add \'fontawesome\' to your Quasar boot config!')
 	}
 
-	_out.done()
+	$out.done()
 }

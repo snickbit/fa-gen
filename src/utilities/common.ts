@@ -17,7 +17,7 @@ interface Config {
 
 let config: Config
 
-export const _out = new Out('fa-cli')
+export const $out = new Out('fa-cli')
 
 export const client = createClient({url: 'https://api.fontawesome.com'})
 
@@ -31,7 +31,7 @@ export async function initConfig() {
 	if (!config) {
 		if (!fileExists(config_path)) {
 			// create with inquirer
-			_out.block.info('fa-cli config')
+			$out.block.info('fa-cli config')
 
 			config = {} as Config
 
@@ -83,7 +83,7 @@ export async function initConfig() {
 			config.icons = default_icons.slice()
 			config.aliases = {...default_icon_aliases}
 			if (fileExists('quasar.conf.js') || fileExists('quasar.config.js')) {
-				_out.info('Quasar Framework detected!')
+				$out.info('Quasar Framework detected!')
 				config.isQuasar = true
 			}
 
@@ -92,7 +92,7 @@ export async function initConfig() {
 			try {
 				config = getFileJson(config_path)
 			} catch (e) {
-				_out.error(`Error parsing config file: ${e.message}`)
+				$out.error(`Error parsing config file: ${e.message}`)
 				process.exit(1)
 			}
 		}

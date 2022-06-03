@@ -1,7 +1,7 @@
 import {ask, confirm} from '@snickbit/node-utilities'
 import {isEmpty, plural} from '@snickbit/utilities'
 import {gql} from '@urql/core'
-import {_out, client, initConfig, normalizeIconName, saveConfig} from '../utilities/common'
+import {$out, client, initConfig, normalizeIconName, saveConfig} from '../utilities/common'
 import cli from '@snickbit/node-cli'
 import generate from './generate'
 
@@ -41,7 +41,7 @@ export default async argv => cli(argv).args({
 						.query(iconQuery, {query: iconName.replace(/fa:/, '')})
 						.toPromise()
 				} catch (e) {
-					_out.error(`We couldn't find any icons matching {cyan}${iconName}{/cyan}`)
+					$out.error(`We couldn't find any icons matching {cyan}${iconName}{/cyan}`)
 					continue
 				}
 
@@ -66,22 +66,22 @@ export default async argv => cli(argv).args({
 
 					if (!config.icons.includes(iconName)) {
 						config.icons.push(iconName)
-						_out.v().success(`Added icon {cyan}${iconName}{/cyan}`)
+						$out.v().success(`Added icon {cyan}${iconName}{/cyan}`)
 						changes.icons++
 					}
 				}
 			} else {
-				_out.warn(`Icon {cyan}${iconName}{/cyan} already exists`)
+				$out.warn(`Icon {cyan}${iconName}{/cyan} already exists`)
 			}
 
 			if (!isEmpty(aliases)) {
 				for (let alias of aliases) {
 					if (config.aliases[alias] !== iconName && await shouldAddAlias(alias)) {
 						config.aliases[alias] = iconName
-						_out.v().success(`Added alias {magenta}${alias}{/magenta}`)
+						$out.v().success(`Added alias {magenta}${alias}{/magenta}`)
 						changes.aliases++
 					} else {
-						_out.warn(`Alias {magenta}${alias}{/magenta} skipped`)
+						$out.warn(`Alias {magenta}${alias}{/magenta} skipped`)
 					}
 				}
 			}
@@ -89,9 +89,9 @@ export default async argv => cli(argv).args({
 
 		if (changes.icons || changes.aliases) {
 			saveConfig(config)
-			changes.icons && _out.success(`Added {cyan}${changes.icons} ${plural('icon', changes.icons)}{/cyan}`)
-			changes.aliases && _out.success(`Added {magenta}${changes.aliases} ${plural('alias', changes.aliases)}{/magenta}`)
+			changes.icons && $out.success(`Added {cyan}${changes.icons} ${plural('icon', changes.icons)}{/cyan}`)
+			changes.aliases && $out.success(`Added {magenta}${changes.aliases} ${plural('alias', changes.aliases)}{/magenta}`)
 			return generate()
 		}
-		_out.done('Nothing to update')
+		$out.done('Nothing to update')
 	})
