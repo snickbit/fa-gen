@@ -19,7 +19,7 @@
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"bin": {
-		"fa": "./bin/fa.js"
+		"fa": "./bin/fa"
 	},
 	"files": [
 		"dist",
@@ -34,10 +34,10 @@
 		"build:meta": "pnpm run build:cli --minify --metafile=.meta.json",
 		"clean": "shx rm -rf ./dist ./bin",
 		"depcheck": "depcheck",
-		"esbuild": "esbuild src/cli.ts --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/*",
+		"esbuild": "esbuild src/cli.ts --bundle --outfile=bin/fa --target=node12 --platform=node --external:@fortawesome/*",
 		"index": "indexer",
 		"prod": "pnpm run clean && concurrently -n lib,cli \"pnpm run build:lib --minify\" \"pnpm run build:cli --minify\"",
-		"start": "node bin/fa.js",
+		"start": "node bin/fa",
 		"watch": "concurrently -n lib,cli \"pnpm run watch:lib\" \"pnpm run watch:cli\"",
 		"watch:cli": "pnpm run dev:cli --watch",
 		"watch:lib": "pnpm run dev:lib --watch"
