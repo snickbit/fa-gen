@@ -58,7 +58,7 @@
 		"mkdirp": "^1.0.4"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.4.1",
+		"@remedyred/indexer": "^2.4.2",
 		"@types/node": "^17.0.38",
 		"concurrently": "^7.2.1",
 		"tsup": "^6.0.1",
