@@ -5,15 +5,14 @@ import {$out, client, initConfig, normalizeIconName, saveConfig} from '../utilit
 import cli from '@snickbit/node-cli'
 import generate from './generate'
 
-export default async argv => cli(argv).args({
-	icons: {
-		description: 'Icon name',
-		type: 'array',
-		required: true
-	}
-})
-	.run()
-	.then(async args => {
+export default async argv => cli(argv)
+	.args({
+		icons: {
+			description: 'Icon name',
+			type: 'array',
+			required: true
+		}
+	}).run().then(async args => {
 		const config = await initConfig()
 		let changes = {
 			icons: 0,
@@ -29,17 +28,14 @@ export default async argv => cli(argv).args({
 			if (!config.icons.includes(iconName)) {
 				const iconQuery = gql`
 				query ($query: String) {
-					search(version: "6.1.1", query: $query, first: 15) {
-						id
-					}
+					search(version: "6.1.1", query: $query, first: 15) {id}
 				}
 			`
 
 				let results
 				try {
 					results = await client
-						.query(iconQuery, {query: iconName.replace(/fa:/, '')})
-						.toPromise()
+						.query(iconQuery, {query: iconName.replace(/fa:/, '')}).toPromise()
 				} catch (e) {
 					$out.error(`We couldn't find any icons matching {cyan}${iconName}{/cyan}`)
 					continue
