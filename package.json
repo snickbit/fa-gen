@@ -53,8 +53,7 @@
 		"@snickbit/utilities": "^3.0.26",
 		"@urql/core": "^2.5.0",
 		"graphql": "^16.5.0",
-		"isomorphic-unfetch": "^3.1.0",
-		"lodash": "^4.17.21"
+		"isomorphic-unfetch": "^3.1.0"
 	},
 	"devDependencies": {
 		"@remedyred/indexer": "^2.4.2",

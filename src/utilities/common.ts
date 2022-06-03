@@ -1,8 +1,8 @@
 import {ask, confirm, fileExists, getFileJson, saveFileJson} from '@snickbit/node-utilities'
+import {camelCase} from '@snickbit/utilities'
 import {createClient} from '@urql/core'
 import {default_icon_aliases, default_icons, icon_prefix_types} from './data'
 import out, {Out} from '@snickbit/out'
-import camelCase from 'lodash/camelCase'
 import path from 'path'
 import 'isomorphic-unfetch'
 
