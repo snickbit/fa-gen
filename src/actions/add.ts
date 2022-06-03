@@ -34,8 +34,7 @@ export default async argv => cli(argv)
 
 				let results
 				try {
-					results = await client
-						.query(iconQuery, {query: iconName.replace(/fa:/, '')}).toPromise()
+					results = await client.query(iconQuery, {query: iconName.replace(/fa:/, '')}).toPromise()
 				} catch (e) {
 					$out.error(`We couldn't find any icons matching {cyan}${iconName}{/cyan}`)
 					continue
