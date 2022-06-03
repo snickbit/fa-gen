@@ -26,19 +26,21 @@
 		"bin"
 	],
 	"scripts": {
+		"dev:cli": "pnpm run build:cli --sourcemap",
+		"dev:lib": "pnpm run build:lib --sourcemap",
 		"build": "pnpm run clean && pnpm run build:lib && pnpm run build:cli",
 		"build:cli": "pnpm run esbuild",
 		"build:lib": "tsup",
 		"build:meta": "pnpm run build:cli --minify --metafile=.meta.json",
 		"clean": "shx rm -rf ./dist ./bin",
 		"depcheck": "depcheck",
-		"esbuild": "esbuild src/cli.ts --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/* --sourcemap",
+		"esbuild": "esbuild src/cli.ts --bundle --outfile=bin/fa.js --target=node12 --platform=node --external:@fortawesome/*",
 		"index": "indexer",
 		"prod": "pnpm run clean && concurrently -n lib,cli \"pnpm run build:lib --minify\" \"pnpm run build:cli --minify\"",
 		"start": "node bin/fa.js",
 		"watch": "concurrently -n lib,cli \"pnpm run watch:lib\" \"pnpm run watch:cli\"",
-		"watch:cli": "pnpm run build:cli --watch",
-		"watch:lib": "pnpm run build:lib --watch"
+		"watch:cli": "pnpm run dev:cli --watch",
+		"watch:lib": "pnpm run dev:lib --watch"
 	},
 	"jest": {
 		"preset": "ts-jest",
