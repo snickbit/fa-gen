@@ -13,6 +13,7 @@ interface Config {
 	isQuasar: boolean
 	icons: string[]
 	aliases: Record<string, string>
+	output?: string
 }
 
 let config: Config
