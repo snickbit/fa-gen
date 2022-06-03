@@ -20,8 +20,6 @@ export default {
 		})
 		.run()
 		.then(async args => {
-			return $out.done('Removing icons')
-
 			const config = await initConfig()
 			let changes = {
 				icons: 0,
