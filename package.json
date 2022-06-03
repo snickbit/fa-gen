@@ -54,8 +54,7 @@
 		"@urql/core": "^2.5.0",
 		"graphql": "^16.5.0",
 		"isomorphic-unfetch": "^3.1.0",
-		"lodash": "^4.17.21",
-		"mkdirp": "^1.0.4"
+		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
 		"@remedyred/indexer": "^2.4.2",
