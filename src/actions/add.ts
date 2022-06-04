@@ -27,8 +27,7 @@ export default async argv => cli(argv)
 			let [icon, ...aliases] = item.split(',')
 
 			let iconName = cleanIconName(icon)
-			const reg = new RegExp(`^fa[a-z]?:(${iconName})$`)
-			if (!config.icons.find(i => reg.test(i))) {
+			if (!iconExists(iconName)) {
 				const iconQuery = gql`
 				query ($version: String!, $query: String!) {
 					search(version: $version, query: $query, first: 15) {id, styles, label}
@@ -75,10 +74,11 @@ export default async argv => cli(argv)
 							iconName = iconName.replace(/fa:/, 'fab:')
 						}
 
-					if (!config.icons.includes(iconName)) {
-						config.icons.push(iconName)
-						$out.v().success(`Added icon {cyan}${iconName}{/cyan}`)
-						changes.icons++
+						if (!iconExists(iconName)) {
+							config.icons.push(iconName)
+							$out.v().success(`Added icon {cyan}${iconName}{/cyan}`)
+							changes.icons++
+						}
 					}
 				}
 			} else {
