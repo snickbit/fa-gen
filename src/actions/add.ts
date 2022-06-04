@@ -19,6 +19,8 @@ export default async argv => cli(argv)
 			aliases: 0
 		}
 
+		const queryVersion = config.version === 'svg-fontawesome-v5-pro' ? '5.14.4' : '6.1.1'
+
 		const shouldAddAlias = async alias => !config.aliases[alias] || args.force || await confirm(`Alias {magenta}${alias}{/magenta} already exists for icon {cyan}${config.aliases[alias]}{/cyan}, overwrite?`)
 
 		for (let item of args.icons) {
@@ -28,14 +30,16 @@ export default async argv => cli(argv)
 			const reg = new RegExp(`^fa[a-z]?:(${iconName})$`)
 			if (!config.icons.find(i => reg.test(i))) {
 				const iconQuery = gql`
-				query ($query: String) {
-					search(version: "6.1.1", query: $query, first: 15) {id}
-				}
-			`
+				query ($version: String!, $query: String!) {
+					search(version: $version, query: $query, first: 15) {id, styles, label}
+				}`
 
 				let results
 				try {
-					results = await client.query(iconQuery, {query: iconName.replace(/fa:/, '')}).toPromise()
+					results = await client.query(iconQuery, {
+						version: queryVersion,
+						query: iconName
+					}).toPromise()
 				} catch (e) {
 					$out.error(`We couldn't find any icons matching {cyan}${iconName}{/cyan}`)
 					continue
