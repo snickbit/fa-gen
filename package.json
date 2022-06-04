@@ -26,23 +26,22 @@
 		"bin"
 	],
 	"scripts": {
-		"dev:cli": "pnpm run build:cli --sourcemap",
-		"dev:lib": "pnpm run build:lib --sourcemap",
 		"build": "pnpm run clean && pnpm run build:lib && pnpm run build:cli",
 		"build:cli": "pnpm run esbuild",
 		"build:lib": "tsup",
 		"build:meta": "pnpm run build:cli --minify --metafile=.meta.json",
 		"clean": "shx rm -rf ./dist ./bin",
 		"depcheck": "depcheck",
+		"dev:cli": "pnpm run build:cli --sourcemap",
+		"dev:lib": "pnpm run build:lib --sourcemap",
 		"esbuild": "esbuild src/cli.ts --bundle --outfile=bin/fa --target=node12 --platform=node --external:@fortawesome/*",
 		"index": "indexer",
 		"prod": "pnpm run clean && concurrently -n lib,cli \"pnpm run build:lib --minify\" \"pnpm run build:cli --minify\"",
+		"schema": "pnpx get-graphql-schema https://api.fontawesome.com > schema.graphql",
 		"start": "node bin/fa",
 		"watch": "concurrently -n lib,cli \"pnpm run watch:lib\" \"pnpm run watch:cli\"",
 		"watch:cli": "pnpm run dev:cli --watch",
 		"watch:lib": "pnpm run dev:lib --watch"
-		"watch:lib": "pnpm run dev:lib --watch",
-		"schema": "pnpx get-graphql-schema https://api.fontawesome.com > schema.graphql"
 	},
 	"jest": {
 		"preset": "ts-jest",
