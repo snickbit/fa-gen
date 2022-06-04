@@ -1,9 +1,15 @@
-import {ask, confirm} from '@snickbit/node-utilities'
+import {ask, ChoiceOption, confirm} from '@snickbit/node-utilities'
 import {isEmpty, plural} from '@snickbit/utilities'
 import {gql} from '@urql/core'
-import {$out, client, initConfig, normalizeIconName, saveConfig} from '../utilities/common'
+import {$out, cleanIconName, client, iconExists, initConfig, normalizeIconName, saveConfig} from '../utilities/common'
 import cli from '@snickbit/node-cli'
 import generate from './generate'
+
+interface IconResult {
+	id: string
+	label: string
+	styles: string[]
+}
 
 export default async argv => cli(argv)
 	.args({
