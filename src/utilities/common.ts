@@ -119,6 +119,13 @@ export function saveConfig(conf) {
 	return saveFileJson(config_path, _config)
 }
 
+export function iconExists(icon: string) {
+	let config = useConfig()
+	let iconName = cleanIconName(icon)
+	const reg = new RegExp(`^fa[a-z]?:(${iconName})$`)
+	return config.icons.find(i => reg.test(i))
+}
+
 export function cleanIconName(icon_name: string): string {
 	return icon_name.replace(/(fa[a-z]?)[-:]/, '')
 }
