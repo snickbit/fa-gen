@@ -41,6 +41,8 @@
 		"watch": "concurrently -n lib,cli \"pnpm run watch:lib\" \"pnpm run watch:cli\"",
 		"watch:cli": "pnpm run dev:cli --watch",
 		"watch:lib": "pnpm run dev:lib --watch"
+		"watch:lib": "pnpm run dev:lib --watch",
+		"schema": "pnpx get-graphql-schema https://api.fontawesome.com > schema.graphql"
 	},
 	"jest": {
 		"preset": "ts-jest",

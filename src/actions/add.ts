@@ -24,8 +24,9 @@ export default async argv => cli(argv)
 		for (let item of args.icons) {
 			let [icon, ...aliases] = item.split(',')
 
-			let iconName = normalizeIconName(icon.replace(/(fa[a-z]?)-/, `$1:`))
-			if (!config.icons.includes(iconName)) {
+			let iconName = cleanIconName(icon)
+			const reg = new RegExp(`^fa[a-z]?:(${iconName})$`)
+			if (!config.icons.find(i => reg.test(i))) {
 				const iconQuery = gql`
 				query ($query: String) {
 					search(version: "6.1.1", query: $query, first: 15) {id}
