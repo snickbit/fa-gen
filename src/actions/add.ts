@@ -45,24 +45,35 @@ export default async argv => cli(argv)
 					continue
 				}
 
-				const icon_results = results?.data?.search?.map(r => r.id) || []
+				const icon_results: IconResult[] = results?.data?.search || []
 
 				if (icon_results.length) {
-					let icon_selected = icon_results.find(r => r === icon)
+					let icon_selected: IconResult | 'None of the above' = icon_results.find(r => r.id === icon)
 
 					if (!icon_selected) {
 						if (icon_results.length === 1) {
 							icon_selected = icon_results[0]
 						} else {
-							icon_results.push('None of the above')
-							icon_selected = await ask(`Found ${icon_results.length} matches for ${icon}`, {type: 'select', choices: icon_results})
+							const choices: ChoiceOption[] = icon_results.map(r => ({
+								title: `${r.label}\t(${r.styles.join(', ')})`,
+								value: r.id
+							}))
+							choices.push('None of the above')
+							icon_selected = await ask(`Found ${icon_results.length} matches for ${icon}`, {
+								type: 'select',
+								choices
+							})
 							if (icon_selected === 'None of the above') {
 								continue
 							}
 						}
 					}
 
-					iconName = normalizeIconName(icon_selected.replace(/(fa[a-z]?)-/, `$1:`))
+					if (icon_selected) {
+						iconName = normalizeIconName(icon_selected.id)
+						if (icon_selected.styles.includes('brands')) {
+							iconName = iconName.replace(/fa:/, 'fab:')
+						}
 
 					if (!config.icons.includes(iconName)) {
 						config.icons.push(iconName)

@@ -16,7 +16,7 @@ interface Config {
 	output?: string
 }
 
-let config: Config
+let _config: Config
 
 export const $out = new Out('fa-cli')
 
@@ -29,14 +29,14 @@ export function getNodeModulesPath() {
 export const config_path = path.join(process.cwd(), 'fa.config.json')
 
 export async function initConfig() {
-	if (!config) {
+	if (!_config) {
 		if (!fileExists(config_path)) {
 			// create with inquirer
 			$out.block.info('fa-cli config')
 
-			config = {} as Config
+			_config = {} as Config
 
-			config.version = await ask('Which FontAwesome version?', {
+			_config.version = await ask('Which FontAwesome version?', {
 				type: 'select',
 				choices: [{
 					title: 'FontAwesome Pro 5',
@@ -47,11 +47,11 @@ export async function initConfig() {
 				}]
 			})
 
-			if (!config.version) {
+			if (!_config.version) {
 				out.fatal('No FontAwesome version selected')
 			}
 
-			config.default = await ask('Default Style?', {
+			_config.default = await ask('Default Style?', {
 				type: 'select',
 				choices: [
 					{
@@ -73,25 +73,25 @@ export async function initConfig() {
 				]
 			})
 
-			if (!config.default) {
+			if (!_config.default) {
 				out.fatal('No default style selected')
 			}
 
 			if (fileExists('tsconfig.json') && await confirm('Use TypeScript?')) {
-				config.typescript = true
+				_config.typescript = true
 			}
 
-			config.icons = default_icons.slice()
-			config.aliases = {...default_icon_aliases}
+			_config.icons = default_icons.slice()
+			_config.aliases = {...default_icon_aliases}
 			if (fileExists('quasar.conf.js') || fileExists('quasar.config.js')) {
 				$out.info('Quasar Framework detected!')
-				config.isQuasar = true
+				_config.isQuasar = true
 			}
 
-			saveConfig(config)
+			saveConfig(_config)
 		} else {
 			try {
-				config = getFileJson(config_path)
+				_config = getFileJson(config_path)
 			} catch (e) {
 				$out.error(`Error parsing config file: ${e.message}`)
 				process.exit(1)
@@ -99,24 +99,24 @@ export async function initConfig() {
 		}
 	}
 
-	icon_prefix_types.fa = icon_prefix_types[config.default]
+	icon_prefix_types.fa = icon_prefix_types[_config.default]
 
-	return config
+	return _config
 }
 
 export function useConfig() {
-	if (!config) {
+	if (!_config) {
 		out.throw('No config found!')
 	}
 
-	icon_prefix_types.fa = icon_prefix_types[config.default]
+	icon_prefix_types.fa = icon_prefix_types[_config.default]
 
-	return config
+	return _config
 }
 
 export function saveConfig(conf) {
-	config = conf
-	return saveFileJson(config_path, config)
+	_config = conf
+	return saveFileJson(config_path, _config)
 }
 
 export function cleanIconName(icon_name: string): string {
