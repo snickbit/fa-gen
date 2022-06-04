@@ -119,6 +119,10 @@ export function saveConfig(conf) {
 	return saveFileJson(config_path, config)
 }
 
+export function cleanIconName(icon_name: string): string {
+	return icon_name.replace(/(fa[a-z]?)[-:]/, '')
+}
+
 export function normalizeIconName(icon_name: string): string {
 	icon_name = icon_name.replace(/(fa[a-z]?)[-:]/, `$1:`)
 	if (!icon_name.includes(':')) {
