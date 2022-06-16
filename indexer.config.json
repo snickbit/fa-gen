@@ -1,11 +1,5 @@
-[
-	{
-		"index": "src/actions/index.ts",
-		"files": [
-			{
-				"export": "group",
-				"dir": "src/actions"
-			}
-		]
-	}
-]
+{
+	"source": "src/actions/*.ts",
+	"output": "src/actions/index.ts",
+	"type": "group"
+}
