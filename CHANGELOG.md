@@ -1,5 +1,13 @@
 # @snickbit/fa-gen Changelog
 
+## 1.1.61
+
+### Patch Changes
+
+- [acc2f89](https://github.com/snickbit/fa-gen/commit/acc2f89) **fix**:  migrate to @snickbit/indexer
+- [093df7f](https://github.com/snickbit/fa-gen/commit/093df7f) **chore**:  bump dependencies
+- [17d2e36](https://github.com/snickbit/fa-gen/commit/17d2e36) **chore**:  bump dependencies
+
 ## 1.1.60
 
 ### Patch Changes
